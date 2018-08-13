@@ -1,0 +1,58 @@
+{
+  "name": "Emacs shortcuts IME",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "US keyboard with emacs-like cursor movement by shortcut setting",
+  "background": {
+    "scripts": [
+      "main.js"
+    ]
+  },
+  "permissions": [
+    "input"
+  ],
+  "commands": {
+    "up": {
+      "description": "Ctrl+P"
+    },
+    "left": {
+      "description": "Ctrl+B"
+    },
+    "right": {
+      "description": "Crtl+F"
+    },
+    "down": {
+      "description": "Ctrl+N"
+    },
+    "home": {
+      "description": "Ctrl+A"
+    },
+    "delete": {
+      "description": "Ctrl+D"
+    },
+    "backspace": {
+      "description": "Ctrl+H"
+    },
+    "end": {
+      "description": "Ctrl+E"
+    },
+    "killend": {
+      "description": "Ctrl-K"
+    },
+    "enter": {
+      "description": "Ctrl-M"
+    }
+  },
+  "input_components": [
+    {
+      "name": "US (Emacs)",
+      "type": "ime",
+      "id": "us_emacs_shourtcuts",
+      "description": "US keyboard with emacs shortcut",
+      "language": "en-US",
+      "layouts": [
+        "us"
+      ]
+    }
+  ]
+}
