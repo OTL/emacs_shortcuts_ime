@@ -6,7 +6,7 @@ Enables emacs like keybindings on ChromeOS as an IME.
 
 * Install this extension [here](https://chrome.google.com/webstore/detail/emacs-shortcuts-ime/mkegpdcnenfnhenaliggngipehndddne)
 * Set shortcuts at [chrome://extensions/shortcuts](chrome://extensions/shortcuts) like below
-![](screen_shortcuts.png)
+![](images/screen_shortcuts.png)
 * Enable `US(Emacs)` IME in Input Method Setting
 ![](images/screen1.png)
 ![](images/screen2.png)
