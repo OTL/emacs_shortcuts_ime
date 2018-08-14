@@ -1,8 +1,8 @@
 {
   "name": "Emacs shortcuts IME",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "manifest_version": 2,
-  "description": "US keyboard with emacs-like cursor movement by shortcut setting",
+  "description": "US keyboard with emacs shortcut",
   "background": {
     "scripts": [
       "main.js"
@@ -12,36 +12,60 @@
     "input"
   ],
   "commands": {
-    "up": {
-      "description": "Ctrl+P"
+    "00-up": {
+      "description": "Go Up (Ctrl+P)"
     },
-    "left": {
-      "description": "Ctrl+B"
+    "01-down": {
+      "description": "Go Down (Ctrl+N)"
     },
-    "right": {
-      "description": "Crtl+F"
+    "02-left": {
+      "description": "Go Left (Ctrl+B)",
+      "suggested_key": {
+        "default": "Ctrl+B"
+      }
     },
-    "down": {
-      "description": "Ctrl+N"
+    "03-right": {
+      "description": "Go Right (Crtl+F)"
     },
-    "home": {
-      "description": "Ctrl+A"
+    "10-home": {
+      "description": "Go Home (Ctrl+A)"
     },
-    "delete": {
-      "description": "Ctrl+D"
+    "11-end": {
+      "description": "Go End (Ctrl+E)",
+      "suggested_key": {
+        "default": "Ctrl+E"
+      }
     },
-    "backspace": {
-      "description": "Ctrl+H"
+    "20-delete": {
+      "description": "Delete (Ctrl+D)"
     },
-    "end": {
-      "description": "Ctrl+E"
+    "30-backspace": {
+      "description": "Backspace (Ctrl+H)"
     },
-    "killend": {
-      "description": "Ctrl-K"
+    "40-enter": {
+      "description": "Enter (Ctrl+M)",
+      "suggested_key": {
+        "default": "Ctrl+M"
+      }
     },
-    "enter": {
-      "description": "Ctrl-M"
-    }
+    "50-killend": {
+      "description": "Kill line (Ctrl-K)"
+    },
+    "60-cut": {
+      "description": "Cut (Ctrl+W)"
+    },
+    "61-paste": {
+      "description": "Paste (Ctrl+Y)",
+      "suggested_key": {
+        "default": "Ctrl+Y"
+      }
+    },
+    "90-original-ctrl-f": {
+      "description": "Original Ctrl+F (not working)"
+    }   
+  },
+  "browser_action": {
+    "default_popup": "popup.html"
   },
   "input_components": [
     {

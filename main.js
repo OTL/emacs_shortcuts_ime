@@ -1,51 +1,88 @@
 var contextId = -1;
 var requestId = 0;
-function sendEvent(key, isShift) {
+
+function sendEvent(key, isShift, isCtrl) {
   if (isShift === undefined) {
     isShift = false;
+  }
+  if (isCtrl == undefined) {
+    isCtrl = false;
   }
   const keyData = {
     'type': 'keydown',
     'altKey': false,
-    'ctrlKey': false,
+    'ctrlKey': isCtrl,
     'shiftKey': isShift,
     'key': key,
     'code': key,
     'requestId': String(requestId)
   };
-  try {
-    chrome.input.ime.sendKeyEvents({ "contextID": contextId, "keyData": [keyData] });
-  } catch (e) {
 
-  }
+  chrome.input.ime.sendKeyEvents({ "contextID": contextId, "keyData": [keyData] });
 }
 
 chrome.input.ime.onFocus.addListener(function (context) {
   contextId = context.contextID;
 });
 
+chrome.input.ime.onBlur.addListener(function (context) {
+  contextId = -1;
+});
+
 chrome.commands.onCommand.addListener(function (c) {
+  if (contextId == -1) {
+    return;
+  }
   requestId += 1;
-  if (c == "up") {
-    sendEvent('ArrowUp');
-  } else if (c == "down") {
-    sendEvent('ArrowDown');
-  } else if (c == "left") {
-    sendEvent('ArrowLeft');
-  } else if (c == "right") {
-    sendEvent('ArrowRight');
-  } else if (c == "home") {
-    sendEvent('Home');
-  } else if (c == "end") {
-    sendEvent('End');
-  } else if (c == "delete") {
-    sendEvent('Delete');
-  } else if (c == "backspace") {
-    sendEvent('Backspace');
-  } else if (c == "enter") {
-    sendEvent('Enter');
-  } else if (c == "killend") {
-    sendEvent('End', true);
-    sendEvent('Backspace');
+  switch (c) {
+    case "00-up":
+      sendEvent('ArrowUp');
+      break;
+    case "01-down":
+      sendEvent('ArrowDown');
+      break;
+    case "02-left":
+      sendEvent('ArrowLeft');
+      break;
+    case "03-right":
+      sendEvent('ArrowRight');
+      break;
+    case "10-home":
+      sendEvent('Home');
+      break;
+    case "11-end":
+      sendEvent('End');
+      break;
+    case "20-delete":
+      sendEvent('Delete');
+      break;
+    case "30-backspace":
+      sendEvent('Backspace');
+      break;
+    case "40-enter":
+      sendEvent('Enter');
+      break;
+    case "50-killend":
+      sendEvent('End', true);
+      sendEvent('KeyX', false, true);
+      break;
+    case "60-cut":
+      sendEvent('KeyX', false, true);
+      break;
+    case "61-paste":
+      sendEvent('KeyV', false, true);
+      break;
+    case "90-original-ctrl-f":
+      sendEvent('KeyF', false, true);
+      break;
+    case "91-original-ctrl-a":
+      sendEvent('KeyA', false, true);
+      break;      
+    case "92-original-ctrl-p":
+      sendEvent('KeyP', false, true);
+      break;            
+    default:
+      console.error("%s is not supported", c);
+      break;
   }
 });
